@@ -1,7 +1,7 @@
 library(ggplot2)
 
 # Import data
-dt = read.csv("~/Sync/R/KleibersLaw_MetabolicRate_VS_Mass/Kolokotrones et al.csv")
+dt = read.csv("Kolokotrones et al.csv")
 df = data.frame(x = dt$Mass..g., y = dt$BMR..W.)
 
 # Fit with non-linear least-squares regression
@@ -23,6 +23,7 @@ ggplot() +
   xlab("Mass \n (log10-grams)") +
   ylab("BMR \n (log10-W)")
 
+# Plot data on original scale
 ggplot() + 
   geom_point(aes(x = df$x, y = df$y)) + 
   geom_line(aes(x = x, y = yN, colour = "Non-Linear"), data = df) + 
@@ -31,6 +32,7 @@ ggplot() +
   xlab("Mass \n (grams)") +
   ylab("BMR \n (W)")
 
+# Plot log-tranformed data
 ggplot() + 
   geom_point(aes(x = logdf$x, y = logdf$y)) + 
   geom_line(aes(x = logdf$x, y = log10(yN), colour = "Non-Linear"), data = df) + 
@@ -39,7 +41,7 @@ ggplot() +
   xlab("Mass \n (log-grams)") +
   ylab("BMR \n (log-W)")
 
-
+# Plot diagnostics
 plot(lm1, which = 1)
 
 hist(log10(df$x),xlab = "Mass \n (log10-grams)", main = "")
