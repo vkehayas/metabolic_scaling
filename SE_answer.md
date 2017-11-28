@@ -5,11 +5,13 @@
 It is indeed the case that if the relationship between two variables follows a power law the two approaches should provide comparable results, but important differences could arise due to [Jensen's inequality][1]. In order to test whether the reported differences between the two approaches are due to Jensen's inequality or to some biological factor I obtained data from [Kolokotrones et al. (2010)][2] who have in turn taken them from [McNab (2008)][3]. [Kolokotrones et al. (2010)][2] investigated the issue of whether a power law is appropriate by performing linear regression on log-transformed data but they did not attempt to fit the data with non-linear regression.
 
 I've fitted a non-linear model of the form:
-$$ B = \alpha M^b$$ , where $M$ the body mass (in grams) and $B$ the basal metabolic rate (in Watts),
+$$ B = \alpha M^{b} $$
+, where $M$ the body mass (in grams) and $B$ the basal metabolic rate (in Watts),
 which gave coefficients $\alpha = 0.005$ and $b = 0.87$.
 I also fitted a linear model of the form:
 $$ log_{10}(B) = blog_{10}(M) + log_{10}(\alpha) $$
-which gave coefficients $ \alpha = -1.7 $ and $ b = 0.72 $.
+
+which gave coefficients $\alpha = -1.7$ and $b = 0.72$.
 
 It appears that the results of the two approaches are indeed different. Below I plot the results of the two fits. On the variables' original scale we see that the linear model fails to predict observations from species with large mass and that the non-linear model does much better in this respect (upper left). However, when we look at the two models after log-transform, it is clear that the non-linear model fails to predict many observations from species with low mass (upper right). Looking at the residuals of the non-linear model we see that the errors are multiplicative as the variance of the residuals is increasing with (log-transformed) fitted values (bottom left). This indicates that fitting with a linear model on log-transformed data is warranted. However, the plot of linear model's residuals over log-transformed fitted values (bottom right) confirms that the linearity assumption is violated. Thus, neither method is appropriate for this dataset and the quadratic term the authors of the cited paper added in the linear model fitted on the log-transformed variables appears to be warranted in order to account for the observed convexity.
 
